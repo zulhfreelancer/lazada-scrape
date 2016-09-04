@@ -1,0 +1,49 @@
+<div class="row">
+  <div class="col-md-12">
+    <h3><%= link_to "Phones", root_path %></h3>
+
+    <%= form_tag(root_path, method: :get, class: "form-inline") do %>
+      <div class="form-group">
+        <%= number_field_tag :from, params[:from], {class: "form-control", required: true, placeholder: "From"} %>
+      </div>
+      <div class="form-group">
+        <%= number_field_tag :to, params[:to], {class: "form-control", required: true, placeholder: "To"} %>
+      </div>
+      <button type="submit" class="btn btn-primary">Search <i class="fa fa-search"></i></button>
+      <% if params[:utf8].present? %>
+        <%= link_to "Reset", root_path, class: "btn btn-danger" %>      
+      <% end %>
+    <% end %>
+
+    <% if @phones.any? %>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Link</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @phones.each do |phone| %>
+            <tr>
+              <td><%= phone.name %></td>
+              <td><%= number_to_currency(phone.price, unit: "RM", separator: ".", delimiter: ",") %></td>
+              <td>
+                <%= link_to phone.link, class: "btn btn-success btn-block", target: :_blank do %>
+                  View <%= icon('external-link') %>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <%= will_paginate @phones, renderer: BootstrapPagination::Rails %>
+    <% end %>
+
+    <% if @phones.blank? %>
+      <p>No phones found</p>
+    <% end %>
+  </div> <!-- /col-md-12 -->
+</div> <!-- /row -->

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Phones</title>
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+    <%= favicon_link_tag 'favicon.png' %>
+  </head>
+
+  <body>
+  	<div class="container">
+  		<%= yield %>
+  	</div>
+
+  	<footer class="footer">
+      <div class="container">
+        <p class="text-muted footer_text">
+        	Made with <i class="fa fa-heart" style="color: #D1495B;"></i> from Damansara by <a href="https://twitter.com/zulhhandyplast" target="_blank">Zulhilmi Zainudin</a>
+        </p>
+        <p class="text-muted footer_data">Data source: Lazada Malaysia</p>
+      </div>
+    </footer>
+  </body>
+</html>
